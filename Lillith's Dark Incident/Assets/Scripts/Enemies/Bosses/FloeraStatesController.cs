@@ -100,10 +100,12 @@ public class FloeraStatesController : MonoBehaviour
 	
 	private void RushAttack()
 	{
-		//while (state == States.RushAttack)
-		//{
-		//	StartCoroutine(Rushing());
-		//}
+		if (!hasArrived)
+		{
+			hasArrived = false;
+			returnPosition = playerPosition.position;
+			InvokeRepeating("Rushing", 0f, 0.5f);
+		}
 	}
 	
 	private IEnumerator Rushing()
@@ -151,4 +153,6 @@ public class FloeraStatesController : MonoBehaviour
 		}
 		return probs.Length - 1;
 	}
+	
+	
 }
