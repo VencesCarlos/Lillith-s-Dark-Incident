@@ -24,7 +24,7 @@ public class LillithBullet : MonoBehaviour
 	
 	private void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.CompareTag("Pool"))
+		if (other.CompareTag("Pool") || other.CompareTag("Enemy"))
 		{
 			this.gameObject.SetActive(false);
 		}

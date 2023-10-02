@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
 	private static GameManager _instance;
 	public static GameManager Instance { get { return _instance; } }
 	
+	public int currentLevel = 1;
+	
 	private static int fpsLimit = 60;
 	
 	private void Awake()
@@ -25,5 +27,6 @@ public class GameManager : MonoBehaviour
 	private void Start()
 	{
 		Application.targetFrameRate = fpsLimit;
+		Cursor.lockState = CursorLockMode.Locked;
 	}
 }

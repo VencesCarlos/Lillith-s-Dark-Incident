@@ -25,16 +25,24 @@ public class PlayerController : MonoBehaviour
 	
 	private Rigidbody2D rb2D;
 	private PlayerInput playerInput;
+	private Animator animator;
 	
+	[Header("Taking Damage")]
+	[SerializeField] private Vector2 knockbackForce;
+	public bool canMove = true;
+		
 	private void Start()
 	{
 		rb2D = GetComponent<Rigidbody2D>();
 		playerInput = GetComponent<PlayerInput>();
+		animator = GetComponent<Animator>();
 	}
 
 	private void Update()
 	{
 		bulletCooldownTimer += Time.deltaTime;
+		
+		animator.SetFloat("xSpeed", rb2D.velocity.x);
 	
 		ReadInput();
 		Shoot();
@@ -42,7 +50,10 @@ public class PlayerController : MonoBehaviour
 	
 	private void FixedUpdate()
 	{
-		Move();
+		if (canMove)
+		{
+			Move();	
+		}
 	}
 	
 	private void ReadInput()
@@ -65,5 +76,11 @@ public class PlayerController : MonoBehaviour
 			bullet.transform.position = transform.position;
 			bullet.transform.rotation = transform.rotation;
 		}
+	}
+	
+	public void KnockBack(Vector2 pointOfHit)
+	{	
+		Vector2 direction = (Vector2.zero - pointOfHit).normalized;
+		rb2D.velocity = (direction * knockbackForce.magnitude) * -1;
 	}
 }

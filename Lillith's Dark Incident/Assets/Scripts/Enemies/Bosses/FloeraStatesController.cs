@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 
 public class FloeraStatesController : MonoBehaviour
@@ -15,8 +14,14 @@ public class FloeraStatesController : MonoBehaviour
 	}
 	[SerializeField] private float[] probs;
 	
+	[Header("Move Attack")]
+	[SerializeField] private float frequency;
+	[SerializeField] private float amplitude;
+	private bool continueMoving;
+	
 	[Header("Rush Attack")]
-	[SerializeField] private Transform playerPosition; 
+	[SerializeField] private Transform playerPosition;
+	[SerializeField] private bool isRushing;
 	
 	[Header("Returning")]
 	private IEnumerator returnCoroutine;
@@ -51,9 +56,12 @@ public class FloeraStatesController : MonoBehaviour
 		}
 	}
 	
+	# region Utility
 	private IEnumerator ChangeState()
 	{
+		returnTime = 25f;
 		hasArrived = false;
+		continueMoving = false;
 		state = (States)Choose(probs);
 		yield return new WaitForSeconds(3f);
 		StartCoroutine(ChangeState());
@@ -78,7 +86,9 @@ public class FloeraStatesController : MonoBehaviour
 		
 		hasArrived = true;
 	}
+	# endregion
 	
+	# region MoveAttack
 	private void MoveAttack()
 	{
 		if (!hasArrived)
@@ -96,24 +106,57 @@ public class FloeraStatesController : MonoBehaviour
 				StopCoroutine(returnCoroutine);
 			}
 		}
-	}
-	
-	private void RushAttack()
-	{
-		if (!hasArrived)
+		else
 		{
-			hasArrived = false;
-			returnPosition = playerPosition.position;
-			InvokeRepeating("Rushing", 0f, 0.5f);
+			Debug.Log("Move Attack");
+			continueMoving = true;
+			StartCoroutine(HorizontalAttack());
 		}
 	}
 	
-	private IEnumerator Rushing()
+	private IEnumerator HorizontalAttack()
 	{
-		returnPosition = playerPosition.position;
-		StartCoroutine(MoveToDestination(returnPosition));
-		yield return new WaitForSeconds(2f);
+		Vector3 startPosition = transform.position;
+		float elapsedTime = 0f;
+		
+		while (continueMoving)
+		{
+			elapsedTime += Time.deltaTime;
+			float horizontalOffset = amplitude * Mathf.Sin(2f * Mathf.PI * frequency * elapsedTime);
+			Vector3 newPosition = new Vector3(startPosition.x + horizontalOffset, startPosition.y, startPosition.z);
+			transform.position = newPosition;
+			yield return null;
+		}
 	}
+	# endregion
+	
+	# region RushAttack
+	private void RushAttack()
+	{
+		isRushing = false;
+		StartCoroutine(RushToPlayer());
+	}
+	
+	private IEnumerator RushToPlayer()
+	{
+		isRushing = true;
+		
+		while (isRushing)
+		{
+			Debug.Log("Rush Attack");
+			Vector3 rushPosition = GetPlayerPosition();
+			yield return StartCoroutine(MoveToDestination(rushPosition));
+			yield return new WaitForSeconds(0.3f);
+		}
+		
+		isRushing = false;
+	}
+	
+	private Vector3 GetPlayerPosition()
+	{
+		return playerPosition.position;
+	}
+	# endregion
 	
 	private void HellAttack()
 	{
