@@ -5711,11 +5711,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: c74fbb75ded17284e934fbb2d1ce1ca9, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 6ac8745f46b8aea4ca65bca1f4e437fe, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 43ddb8e7a21d30544afed432a1105cca, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
