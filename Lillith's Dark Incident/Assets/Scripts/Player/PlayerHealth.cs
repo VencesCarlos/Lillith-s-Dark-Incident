@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
 	[Header("Health")]
-	[SerializeField] private int health;
+	public int health;
 	[SerializeField] private int numberOfStars;
 	[SerializeField] private Image[] stars;
 	
@@ -19,6 +19,8 @@ public class PlayerHealth : MonoBehaviour
 	[SerializeField] private float noControlTime;
 	[SerializeField] private float noCollisionTime;
 	private PlayerController playerController;
+	
+	[SerializeField] private ScoreManager scoreManager;
 	
 	
 	private void Start()
@@ -69,7 +71,9 @@ public class PlayerHealth : MonoBehaviour
 		playerController.KnockBack(position);
 	}
 	
-	void OnParticleCollision(GameObject other) {
+	void OnParticleCollision(GameObject other)
+	{
+		scoreManager.Penalty();
 		TakeDamage(this.transform.position);
 	}
 	
@@ -82,10 +86,11 @@ public class PlayerHealth : MonoBehaviour
 	
 	private IEnumerator NoCollision()
 	{
-		GetComponent<CircleCollider2D>().enabled = false;
+		gameObject.layer = 0;
 		GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.75f);
 		yield return new WaitForSeconds(noCollisionTime);
 		GetComponent<CircleCollider2D>().enabled = true;
+		gameObject.layer = 7;
 		GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
 	}
 }

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -55,7 +54,7 @@ public class MenuController : MonoBehaviour
 		Application.Quit();
 	}
 	
-	public void setVolume(float volume)
+	public void SetVolume(float volume)
 	{
 		float fixedVolume = Mathf.Clamp(20 * Mathf.Log10(volume), -80, 0);
 		AudioListener.volume = (float)Math.Pow(10, fixedVolume / 20);
@@ -76,6 +75,18 @@ public class MenuController : MonoBehaviour
 			volumeSlider.value = defaultVolume;
 			volumeTextValue.text = (defaultVolume * 100).ToString("0");
 			VolumeApply();
+		}
+	}
+	
+	public void ToggleFullscreen()
+	{
+		if (Screen.fullScreenMode == FullScreenMode.FullScreenWindow)
+		{
+			Screen.fullScreenMode = FullScreenMode.Windowed;
+		}
+		else
+		{
+			Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
 		}
 	}
 	

@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
 	
 	private void Shoot()
 	{
-		if ((playerInput.actions["Shoot"].ReadValue<float>() != 0) && (bulletCooldownTimer > bulletCooldown))
+		if ((playerInput.actions["Shoot"].ReadValue<float>() > 0) && (bulletCooldownTimer > bulletCooldown))
 		{
 			bulletCooldownTimer = 0;
 			GameObject bullet = PoolController.Instance.ShootBullet();

@@ -6,29 +6,20 @@ using UnityEngine.UI;
 
 public class GameOver : MonoBehaviour
 {
-    public GameObject gameOverPanel;
-
-    public Button defaultButton;
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (GameObject.FindGameObjectWithTag("Player") == null)
-        {
-            gameOverPanel.SetActive(true);
-
-            if (defaultButton != null)
-            {
-                defaultButton.Select();
-            }
-
-            Time.timeScale = 0f;
-        }
-    }
-
-    public void Restart()
-    {
-        Time.timeScale=1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
+	[SerializeField] private Button defaultButton;
+	
+	private void Start()
+	{
+		defaultButton.Select();
+	}
+	
+	public void MainMenu()
+	{
+		SceneManager.LoadScene("MainMenu");
+	}
+	
+	public void Restart()
+	{
+		SceneManager.LoadScene("FloeraLevel");
+	}
 }

@@ -6,6 +6,7 @@ public class BossHealthTemporal : MonoBehaviour
 {
 	public int maxHealth;
 	public int currentHealth;
+	public ScoreManager scoreManager;
 	
 	private void Start()
 	{
@@ -33,7 +34,16 @@ public class BossHealthTemporal : MonoBehaviour
 	{
 		if (other.gameObject.CompareTag("PlayerBullet"))
 		{
+			scoreManager.Bonus();
+			StartCoroutine(Hit());
 			TakeDamage(25);
 		}	
+	}
+	
+	private IEnumerator Hit()
+	{
+		GetComponent<SpriteRenderer>().color = Color.red;
+		yield return new WaitForSeconds(0.1f);
+		GetComponent<SpriteRenderer>().color = Color.white;
 	}
 }

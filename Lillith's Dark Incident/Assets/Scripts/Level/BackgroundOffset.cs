@@ -5,17 +5,17 @@ using UnityEngine;
 public class BackgroundOffset : MonoBehaviour
 {
 	[SerializeField] private Vector2 moveY;
-    private Vector2 offset;
-    private Material material;
+	private Vector2 offset;
+	private Material material;
 
-    private void Start()
-    {
-        material = GetComponent<SpriteRenderer>().material;
-    }
+	private void Start()
+	{
+		material = GetComponent<SpriteRenderer>().material;
+	}
 
-    private void Update()
-    {
-        offset = moveY * Time.deltaTime;
-        material.mainTextureOffset += offset;
-    }
+	private void Update()
+	{
+		offset = moveY * Time.deltaTime;
+		material.mainTextureOffset += offset;
+	}
 }
