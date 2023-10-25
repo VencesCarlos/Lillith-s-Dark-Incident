@@ -9,9 +9,9 @@ public class LevelManager : MonoBehaviour
 {
 	public GameObject player;
 	public GameObject pausePanel;
-	public Button defaultButtonOver;
 	public Button defaultButtonPause;
 	public PlayerInput playerInput;
+	private bool isPaused = false;
 
 	void Update()
 	{
@@ -19,21 +19,26 @@ public class LevelManager : MonoBehaviour
 		{
 			SceneManager.LoadScene("GameOver");
 		}
-		
-		if (playerInput.actions["Pause"].ReadValue<float>() == 1&& !pausePanel.activeSelf)
+
+		if (Keyboard.current.escapeKey.wasPressedThisFrame || playerInput.actions["Pause"].triggered)
 		{
-			pausePanel.SetActive(true);
-			if (defaultButtonPause != null)
+			if (!pausePanel.activeSelf && !isPaused)
 			{
-				defaultButtonPause.Select();
+				isPaused = true;
+				pausePanel.SetActive(true);
+				if (defaultButtonPause != null)
+				{
+					defaultButtonPause.Select();
+				}
+				Time.timeScale = 0f;
 			}
-			Time.timeScale = 0f;
-		}
-		else if (playerInput.actions["Pause"].ReadValue<float>() == 1 && pausePanel.activeSelf)
-		{
-			pausePanel.SetActive(false);
-			defaultButtonPause = null;
-			Time.timeScale = 1f;
+			else if (pausePanel.activeSelf && isPaused)
+			{
+				isPaused = false;
+				pausePanel.SetActive(false);
+				defaultButtonPause = null;
+				Time.timeScale = 1f;
+			}
 		}
 	}
 
@@ -42,7 +47,7 @@ public class LevelManager : MonoBehaviour
 		Time.timeScale = 1f;
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
-	
+
 	public void MainMenu()
 	{
 		Time.timeScale = 1f;

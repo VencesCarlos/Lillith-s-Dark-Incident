@@ -187,6 +187,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lillith
       objectReference: {fileID: 0}
+    - target: {fileID: 7369541184324317992, guid: a2dd2c2dbb541c24591b642ded18ed53, type: 3}
+      propertyPath: smoothMove
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8983883845178949034, guid: a2dd2c2dbb541c24591b642ded18ed53, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -983,6 +987,7 @@ GameObject:
   - component: {fileID: 689104438}
   - component: {fileID: 689104437}
   - component: {fileID: 689104439}
+  - component: {fileID: 689104440}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -1004,7 +1009,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 233130318}
   pausePanel: {fileID: 278414154}
-  defaultButtonOver: {fileID: 0}
   defaultButtonPause: {fileID: 953304906}
   playerInput: {fileID: 1234893450}
 --- !u!4 &689104438
@@ -1015,7 +1019,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 689104436}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.947149, y: -2.833129, z: 4.134505}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1037,6 +1041,18 @@ MonoBehaviour:
   scoreText: {fileID: 1961245307}
   player: {fileID: 233130318}
   playerHealth: {fileID: 1234893451}
+--- !u!114 &689104440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 689104436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2a526024571f224786955faacc144db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &717214518
 GameObject:
   m_ObjectHideFlags: 0
@@ -3436,6 +3452,10 @@ PrefabInstance:
     - target: {fileID: 4698265145917184387, guid: 3187ce965deb63d458bfa5c8b473c869, type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5149493984232059338, guid: 3187ce965deb63d458bfa5c8b473c869, type: 3}
+      propertyPath: maxHealth
+      value: 25000
       objectReference: {fileID: 0}
     - target: {fileID: 5149493984232059338, guid: 3187ce965deb63d458bfa5c8b473c869, type: 3}
       propertyPath: scoreManager
