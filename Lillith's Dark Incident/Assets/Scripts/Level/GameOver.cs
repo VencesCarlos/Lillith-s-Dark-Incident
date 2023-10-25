@@ -7,7 +7,9 @@ using UnityEngine.UI;
 public class GameOver : MonoBehaviour
 {
 	[SerializeField] private Button defaultButton;
-	
+	[SerializeField] private SceneTransition sceneTransitionMenu;
+	[SerializeField] private SceneTransition sceneTransitionRestart;
+
 	private void Start()
 	{
 		defaultButton.Select();
@@ -15,11 +17,11 @@ public class GameOver : MonoBehaviour
 	
 	public void MainMenu()
 	{
-		SceneManager.LoadScene("MainMenu");
+		sceneTransitionMenu.CallTransition();
 	}
 	
 	public void Restart()
 	{
-		SceneManager.LoadScene("FloeraLevel");
+		sceneTransitionRestart.CallTransition();
 	}
 }

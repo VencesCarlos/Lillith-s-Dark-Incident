@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -10,6 +12,7 @@ public class IntroController : MonoBehaviour
 	[SerializeField] private Image[] images;
 	[SerializeField] private float delay = 0.75f;
 	private int currentIndex = 0;
+	[SerializeField] private SceneTransition sceneTransition;
 
 	private void Start()
 	{
@@ -30,7 +33,7 @@ public class IntroController : MonoBehaviour
 		{
 			if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Joystick1Button0))
 			{
-				SceneManager.LoadScene("FloeraLevel");
+				sceneTransition.CallTransition();
 			}
 		}
 	}

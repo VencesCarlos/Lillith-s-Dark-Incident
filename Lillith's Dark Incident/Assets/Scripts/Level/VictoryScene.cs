@@ -5,11 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class VictoryScene : MonoBehaviour
 {
+	[SerializeField] private SceneTransition sceneTransition;
+
 	void Update()
 	{
 		if (GameObject.FindGameObjectWithTag("Enemy") == null)
 		{	
-			SceneManager.LoadScene("Victory");
+			sceneTransition.CallTransition();
 		}
 	}
 }

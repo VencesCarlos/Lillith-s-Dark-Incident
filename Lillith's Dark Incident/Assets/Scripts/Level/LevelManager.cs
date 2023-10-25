@@ -12,15 +12,15 @@ public class LevelManager : MonoBehaviour
 	public Button defaultButtonPause;
 	public PlayerInput playerInput;
 	private bool isPaused = false;
+	[SerializeField] private SceneTransition sceneTransition;
 
 	void Update()
 	{
 		if (player == null)
 		{
-			SceneManager.LoadScene("GameOver");
+			sceneTransition.CallTransition();
 		}
-
-		if (Keyboard.current.escapeKey.wasPressedThisFrame || playerInput.actions["Pause"].triggered)
+		else if (Keyboard.current.escapeKey.wasPressedThisFrame || playerInput.actions["Pause"].triggered)
 		{
 			if (!pausePanel.activeSelf && !isPaused)
 			{
@@ -51,6 +51,6 @@ public class LevelManager : MonoBehaviour
 	public void MainMenu()
 	{
 		Time.timeScale = 1f;
-		SceneManager.LoadScene("MainMenu");
+		// SceneManager.LoadScene("MainMenu");
 	}
 }
