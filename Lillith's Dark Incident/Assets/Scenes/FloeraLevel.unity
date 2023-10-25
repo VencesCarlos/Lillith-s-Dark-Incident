@@ -189,7 +189,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7369541184324317992, guid: a2dd2c2dbb541c24591b642ded18ed53, type: 3}
       propertyPath: smoothMove
-      value: 0
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 8983883845178949034, guid: a2dd2c2dbb541c24591b642ded18ed53, type: 3}
       propertyPath: m_RootOrder
