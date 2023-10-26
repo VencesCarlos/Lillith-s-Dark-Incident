@@ -34,6 +34,11 @@ public class IntroController : MonoBehaviour
 				sceneTransition.CallTransition();
 			}
 		}
+		
+		if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Joystick1Button1))
+		{
+			sceneTransition.CallTransition();
+		}
 	}
 
 	public void ShowNextImage()

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using Unity.VisualScripting;
 
 public class LevelManager : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class LevelManager : MonoBehaviour
 	public PlayerInput playerInput;
 	private bool isPaused = false;
 	[SerializeField] private SceneTransition sceneTransition;
+	[SerializeField] private AudioSource levelMusic;
+	[SerializeField] private AudioSource pauseMusic;
 
 	void Update()
 	{
@@ -31,6 +34,8 @@ public class LevelManager : MonoBehaviour
 					defaultButtonPause.Select();
 				}
 				Time.timeScale = 0f;
+				levelMusic.Pause();
+				pauseMusic.Play();
 			}
 			else if (pausePanel.activeSelf && isPaused)
 			{
@@ -38,7 +43,14 @@ public class LevelManager : MonoBehaviour
 				pausePanel.SetActive(false);
 				defaultButtonPause = null;
 				Time.timeScale = 1f;
+				levelMusic.Play();
+				pauseMusic.Pause();
 			}
+		}
+		
+		if (!pausePanel.activeSelf)
+		{
+			pauseMusic.Pause();
 		}
 	}
 
