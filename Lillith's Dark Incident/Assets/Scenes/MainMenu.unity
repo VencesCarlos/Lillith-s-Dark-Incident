@@ -842,7 +842,7 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_WrapAround: 0
-    m_SelectOnUp: {fileID: 165787091}
+    m_SelectOnUp: {fileID: 630581323}
     m_SelectOnDown: {fileID: 1348001227}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
@@ -1672,7 +1672,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Beta 0.1.0
+  m_text: Beta 0.1.1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f58eb4a274b391145841bfc05811d3b1, type: 2}
   m_sharedMaterial: {fileID: 428815881772154155, guid: f58eb4a274b391145841bfc05811d3b1, type: 2}
@@ -1951,8 +1951,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4280571069
-  m_fontColor: {r: 0.7411765, g: 0.32941177, b: 0.14117648, a: 1}
+    rgba: 4285025668
+  m_fontColor: {r: 0.5176471, g: 0.3019608, b: 0.40784317, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2748,7 +2748,7 @@ MonoBehaviour:
     m_Mode: 4
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 1348001227}
-    m_SelectOnDown: {fileID: 165787091}
+    m_SelectOnDown: {fileID: 182289577}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
